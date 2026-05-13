@@ -1,2 +1,0 @@
-"""Tkinter GUI for SkyPort."""
-
