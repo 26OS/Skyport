@@ -1,11 +1,15 @@
-# Python bytecode and caches
+# Python bytecode
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Test, coverage, and type-checking caches
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
 
 # Virtual environments
@@ -22,6 +26,7 @@ dist/
 # Local environment files
 .env
 .env.*
+!.env.example
 
 # Editor and OS files
 .DS_Store
@@ -33,5 +38,14 @@ dist/
 # Generated reports and exports
 *.log
 results/
+output/
 outputs/
+tmp/
 
+# LaTeX intermediate files
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc

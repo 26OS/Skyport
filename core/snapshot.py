@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Mapping, Optional
 
-from skyport.core.models import Event, PassengerClass
+from core.models import Event, PassengerClass
 
 
 @dataclass(frozen=True)
@@ -43,4 +43,3 @@ class SimSnapshot:
     completed: tuple[PassengerView, ...]
     metrics: Metrics
     events_this_tick: tuple[Event, ...]
-

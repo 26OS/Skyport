@@ -107,7 +107,7 @@ Event
 ### 3.1 패키지 구조 (Python 가정)
 
 ```
-skyport/
+Skyport/
 ├── core/
 │   ├── models.py         # Passenger, Counter, Event, enums
 │   ├── snapshot.py       # SimSnapshot (immutable)
@@ -119,7 +119,7 @@ skyport/
 │   ├── fixed_priority.py # BaselineB
 │   ├── np_sjf.py         # BaselineC
 │   └── multilevel.py     # 학생 설계 (Priority + HRRN + SJF)
-├── io/
+├── data_io/
 │   ├── parser.py         # CSV/TXT 입력 파싱
 │   └── reporter.py       # CSV/표 출력, 통계
 ├── gui/
@@ -138,7 +138,7 @@ skyport/
 ```
 gui  ──▶  core  ◀──  schedulers
  │         ▲             │
- └────▶ io ┘             │
+ └────▶ data_io ┘        │
            ▲             │
            └─────────────┘
 ```

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from skyport.core.models import Event
+from core.models import Event
 
 
 class EventLogger:
@@ -12,4 +12,3 @@ class EventLogger:
 
     def lines(self) -> list[str]:
         return [event.message for event in self._events]
-

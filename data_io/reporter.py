@@ -4,8 +4,8 @@ import csv
 from pathlib import Path
 from typing import TextIO
 
-from skyport.core.models import CLASS_ORDER, Passenger, PassengerClass
-from skyport.core.snapshot import SimSnapshot
+from core.models import CLASS_ORDER, Passenger, PassengerClass
+from core.snapshot import SimSnapshot
 
 
 def print_report(snapshot: SimSnapshot, stream: TextIO) -> None:
@@ -58,4 +58,3 @@ def write_csv(path: str | Path, passengers: list[Passenger]) -> None:
                     p.counter_id,
                 ]
             )
-

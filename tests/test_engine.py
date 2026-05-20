@@ -1,9 +1,9 @@
 from collections import deque
 
-from skyport.core.engine import SimulationEngine
-from skyport.core.models import Counter, CounterKind, Passenger, PassengerClass, default_counters
-from skyport.io.parser import load_passengers
-from skyport.schedulers import FCFSScheduler, HybridMLQScheduler
+from core.engine import SimulationEngine
+from core.models import Counter, CounterKind, Passenger, PassengerClass, default_counters
+from data_io.parser import load_passengers
+from schedulers import FCFSScheduler, FixedPriorityScheduler, HybridMLQScheduler, NonPreemptiveSJFScheduler
 
 
 def test_assignment_input_runs_to_completion():
@@ -98,3 +98,19 @@ def test_hybrid_economy_queue_promotes_aged_passengers_with_hrrn():
 
     assert selected.passenger_id == "P01"
 
+
+def test_assignment_baselines_select_globally():
+    cases = [
+        (FCFSScheduler(), "P02"),
+        (FixedPriorityScheduler(), "P01"),
+        (NonPreemptiveSJFScheduler(), "P03"),
+    ]
+
+    for scheduler, expected in cases:
+        queues = {
+            PassengerClass.FIRST: deque([Passenger("P01", 2, PassengerClass.FIRST, 8)]),
+            PassengerClass.BUSINESS: deque([Passenger("P02", 0, PassengerClass.BUSINESS, 5)]),
+            PassengerClass.ECONOMY: deque([Passenger("P03", 1, PassengerClass.ECONOMY, 2)]),
+        }
+        selected = scheduler.select(3, Counter("C1", CounterKind.FIRST_ONLY), queues)
+        assert selected.passenger_id == expected
